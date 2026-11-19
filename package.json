@@ -1,0 +1,33 @@
+{
+  "name": "subdyne-data-structures",
+  "version": "0.0.1",
+  "description": "data structure practice",
+  "homepage": "https://github.com/SubDynamics/subdyne-data-structures#readme",
+  "bugs": {
+    "url": "https://github.com/SubDynamics/subdyne-data-structures/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SubDynamics/subdyne-data-structures.git"
+  },
+  "license": "AGPL-3.0",
+  "author": "Alex Wilson",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^8.1.2",
+    "@babel/preset-env": "^8.0.7",
+    "@babel/preset-typescript": "^8.0.7",
+    "@jest/globals": "^30.5.2",
+    "babel-jest": "^30.5.2",
+    "eslint": "^10.15.0",
+    "eslint-config-prettier": "^10.1.8",
+    "jest": "^30.5.2",
+    "prettier": "^3.10.1",
+    "ts-jest": "^29.4.15",
+    "typescript": "^6.0.3"
+  }
+}
