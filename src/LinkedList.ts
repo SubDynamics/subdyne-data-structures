@@ -39,4 +39,28 @@ export default class LinkedList<T> {
     }
     this.count++;
   }
+
+  public removeAt(index: number) {
+    // check for out of bounds values
+    if (index >= 0 && index < this.count) {
+      let current = this.head;
+
+      // removing first item
+      if (index === 0) {
+        this.head = current?.next;
+      } else {
+        let previous: LinkedListNode<T> | undefined;
+        for (let i = 0; i < index; i++) {
+          previous = current;
+          current = current?.next;
+        }
+
+        // link previous with current's next: skip it to remove
+        if (previous) previous.next = current?.next;
+      }
+      this.count--;
+      return current?.element;
+    }
+    return undefined; // should be implicit
+  }
 }

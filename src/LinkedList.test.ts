@@ -15,5 +15,7 @@ describe('Linked List', () => {
     testList.push('antelope');
     testList.push(23);
     // need access methods to make it testable
+    expect(testList.removeAt(1)).toBe(23);
+    expect(testList.removeAt(0)).toBe('antelope');
   });
 });
