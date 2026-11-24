@@ -40,22 +40,32 @@ export default class LinkedList<T> {
     this.count++;
   }
 
-  public removeAt(index: number) {
+  public removeAt(indexToRemove: number) {
     // check for out of bounds values
-    if (index >= 0 && index < this.count) {
-      let current = this.head;
+    if (indexToRemove >= 0 && indexToRemove < this.count) {
+      // this.head implicitly defined if conditional passes,
+      // type is inherited from this.head, but 'current'
+      // explicitly uses 'undefined' because 'next' can return it
+      let current: LinkedListNode<T> | undefined = this.head;
 
       // removing first item
-      if (index === 0) {
+      if (indexToRemove === 0) {
         this.head = current?.next;
       } else {
         let previous: LinkedListNode<T> | undefined;
-        for (let i = 0; i < index; i++) {
+
+        // iterate along 'next' value to climb toward index
+        // because there's no k/v retrieval like array
+        for (let i = 0; i < indexToRemove; i++) {
           previous = current;
           current = current?.next;
         }
 
-        // link previous with current's next: skip it to remove
+        // if-conditional set because previous' type could be undefined
+        // because it is downstream from 'next' property type
+        // Skip over removed index, e.g previous=7, current=8, current.next=9
+        // prevous.next had pointed to 8, now it points to 9
+        // if previous.next is set undefined, 7 becomes last in list
         if (previous) previous.next = current?.next;
       }
       this.count--;

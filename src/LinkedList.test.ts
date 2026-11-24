@@ -14,8 +14,15 @@ describe('Linked List', () => {
 
     testList.push('antelope');
     testList.push(23);
-    // need access methods to make it testable
+    testList.push('dodecahedron');
+
+    // Need to replace these with lookup functions
+    // and move removeAt() tests to their own description block
+
+    // remove item from middle of list
     expect(testList.removeAt(1)).toBe(23);
+    // remove item from presumed new index after middle item removed
+    expect(testList.removeAt(1)).toBe('dodecahedron');
     expect(testList.removeAt(0)).toBe('antelope');
   });
 });
