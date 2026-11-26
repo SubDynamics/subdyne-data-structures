@@ -16,8 +16,17 @@ describe('Linked List', () => {
     testList.push(23);
     testList.push('dodecahedron');
 
-    // Need to replace these with lookup functions
-    // and move removeAt() tests to their own description block
+    expect(testList.getElementAt(0)?.element).toBe('antelope');
+    expect(testList.getElementAt(1)?.element).toBe(23);
+    expect(testList.getElementAt(2)?.element).toBe('dodecahedron');
+  });
+
+  it('removes elements from a Linked List', () => {
+    const testList = new LinkedList();
+
+    testList.push('antelope');
+    testList.push(23);
+    testList.push('dodecahedron');
 
     // remove item from middle of list
     expect(testList.removeAt(1)).toBe(23);

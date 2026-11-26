@@ -40,6 +40,26 @@ export default class LinkedList<T> {
     this.count++;
   }
 
+  /**
+   *
+   * @param indexToGet
+   * @returns LinkedListNode or undefined
+   */
+  public getElementAt(indexToGet: number) {
+    if (indexToGet >= 0 && indexToGet <= this.count) {
+      let node = this.head;
+
+      // iterate along 'next' value to climb toward index
+      // because there's no k/v retrieval like array
+      for (let i = 0; i < indexToGet && node !== undefined; i++) {
+        node = node.next;
+      }
+
+      return node;
+    }
+    return undefined; // implicit
+  }
+
   public removeAt(indexToRemove: number) {
     // check for out of bounds values
     if (indexToRemove >= 0 && indexToRemove < this.count) {
@@ -52,14 +72,8 @@ export default class LinkedList<T> {
       if (indexToRemove === 0) {
         this.head = current?.next;
       } else {
-        let previous: LinkedListNode<T> | undefined;
-
-        // iterate along 'next' value to climb toward index
-        // because there's no k/v retrieval like array
-        for (let i = 0; i < indexToRemove; i++) {
-          previous = current;
-          current = current?.next;
-        }
+        const previous = this.getElementAt(indexToRemove - 1);
+        current = previous?.next;
 
         // if-conditional set because previous' type could be undefined
         // because it is downstream from 'next' property type
