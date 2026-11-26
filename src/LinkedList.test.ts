@@ -34,4 +34,19 @@ describe('Linked List', () => {
     expect(testList.removeAt(1)).toBe('dodecahedron');
     expect(testList.removeAt(0)).toBe('antelope');
   });
+
+  it('inserts element at expected position', () => {
+    const testList = new LinkedList();
+
+    testList.push('antelope');
+    testList.push(23);
+    testList.push('dodecahedron');
+
+    testList.insertAt('76', 1);
+
+    expect(testList.getElementAt(0)?.element).toBe('antelope');
+    expect(testList.getElementAt(1)?.element).toBe('76');
+    expect(testList.getElementAt(2)?.element).toBe(23);
+    expect(testList.getElementAt(3)?.element).toBe('dodecahedron');
+  });
 });

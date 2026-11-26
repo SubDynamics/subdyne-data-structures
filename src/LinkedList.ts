@@ -60,6 +60,35 @@ export default class LinkedList<T> {
     return undefined; // implicit
   }
 
+  /**
+   * @param elementToAdd
+   * @param elementIndex
+   * @returns boolean. true if successfull
+   */
+  public insertAt(elementToAdd: T, elementIndex: number): boolean {
+    if (elementIndex >= 0 && elementIndex <= this.count) {
+      const node = new LinkedListNode(elementToAdd);
+
+      if (elementIndex === 0) {
+        // add on first position
+        const current = this.head;
+        node.next = current;
+        this.head = node;
+      } else {
+        const previous = this.getElementAt(elementIndex - 1);
+        const current = previous?.next;
+        node.next = current;
+
+        // this function's index/count conditional should ensure previous is always defined
+        // but, getElementAdd's return type is declared possibly undefined.
+        if (previous) previous.next = node;
+      }
+      this.count++;
+      return true;
+    }
+    return false;
+  }
+
   public removeAt(indexToRemove: number) {
     // check for out of bounds values
     if (indexToRemove >= 0 && indexToRemove < this.count) {
