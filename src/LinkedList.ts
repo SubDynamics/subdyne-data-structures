@@ -12,8 +12,10 @@ export class LinkedListNode<T> {
 export default class LinkedList<T> {
   protected count: number = 0;
   protected head?: LinkedListNode<T>;
-  constructor(equalsFn = defaultEquals) {}
-
+  protected equalsFn: <T>(a: T, b: T) => boolean;
+  constructor(equalsFn = defaultEquals) {
+    this.equalsFn = equalsFn;
+  }
   /**
    * If head is undefined, list is empty
    * @param element
@@ -115,5 +117,18 @@ export default class LinkedList<T> {
       return current?.element;
     }
     return undefined; // should be implicit
+  }
+
+  public indexOf(element: T): number {
+    let current = this.head;
+
+    for (let i = 0; i < this.count && current !== undefined; i++) {
+      if (this.equalsFn(element, current.element)) {
+        return i;
+      }
+      current = current.next;
+    }
+
+    return -1;
   }
 }

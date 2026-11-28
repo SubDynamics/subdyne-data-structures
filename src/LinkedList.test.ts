@@ -49,4 +49,17 @@ describe('Linked List', () => {
     expect(testList.getElementAt(2)?.element).toBe(23);
     expect(testList.getElementAt(3)?.element).toBe('dodecahedron');
   });
+
+  it('gets index of element', () => {
+    const testList = new LinkedList();
+
+    testList.push('antelope');
+    testList.push(23);
+    testList.push('dodecahedron');
+
+    expect(testList.indexOf('antelope')).toBe(0);
+    expect(testList.indexOf(23)).toBe(1);
+    expect(testList.indexOf('dodecahedron')).toBe(2);
+    expect(testList.indexOf('nincompoop')).toBe(-1);
+  });
 });
